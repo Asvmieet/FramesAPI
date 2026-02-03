@@ -14,4 +14,4 @@ app.listen(port, ()=>{
 
 // Routes
 
-app.use("/boards/create", "./boards/createBoard.js")
+app.use("/boards/create", require("./boards/createBoard.js"))
