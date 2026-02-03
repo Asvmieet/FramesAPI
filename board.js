@@ -11,6 +11,13 @@ unique: true
 
 },
 
+name: {
+type: String,
+required: true,
+
+},
+
+
 perissions:[String],
 
 
