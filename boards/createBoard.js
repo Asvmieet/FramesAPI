@@ -4,7 +4,12 @@
 
 const express = require("express");
 const router = express.Router();
+const dbConnect = require("../database.js")
+router.post("/", async (req, res) =>{
+    const db = await dbConnect()
 
-router.post("/", (req, res) =>{
+    // use db funcs here
+
+    
 res.send("Create board endpoint.")
 })
