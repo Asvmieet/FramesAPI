@@ -10,6 +10,8 @@ router.post("/", async (req, res) =>{
 
     // use db funcs here
 
-    
+
 res.send("Create board endpoint.")
 })
+
+module.exports = router;
