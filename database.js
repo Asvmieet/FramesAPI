@@ -1,3 +1,5 @@
+// Mongo_URI should be stored in ENV.
+
 const {MongoClient} = require('mongodb')
 
 let client;
