@@ -18,7 +18,7 @@ required: true,
 },
 
 
-perissions:[String],
+permissions:[String],
 
 
 
