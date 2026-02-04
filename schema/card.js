@@ -34,6 +34,13 @@ type: Date,
 required: false
 },
 
+isArchived: {
+    type: Boolean,
+    required: true,
+    default: false
+    },
+    
+
 comments: [{
 text: String,
 author: String, // User ID
