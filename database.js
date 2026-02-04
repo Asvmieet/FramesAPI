@@ -1,22 +1,15 @@
 // Mongo_URI should be stored in ENV.
 
-const {MongoClient} = require('mongodb')
+const {mongoose} = require('mongoose')
 
-let client;
-let db;
+let connected = false;
 
 async function connect() {
-    if (db) return db
+   if (connected) return
 
-    client = new MongoClient(process.env.MONGO_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
-
-    await client.connect();
-    db = client.db();
-    console.log("Connected to Mongo")
-    return db
+   await mongoose.connect(process.env.MONGOOSE_URI)
+   connected = true
+   console.log("Frames: Connected to MongoDB")
 }
 
 module.exports = connect;
