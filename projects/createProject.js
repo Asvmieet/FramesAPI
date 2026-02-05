@@ -28,7 +28,7 @@ router.post("/", async (req, res) =>{
 
     res.status(201).json({
         ok: true,
-        board
+        project
     })
   }catch(err){
     console.log(`FRAMES_ERROR - Create Project: ${err}`)
