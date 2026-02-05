@@ -24,3 +24,4 @@ function apiKey(req, res, next){
 
 app.use("/boards/create", apiKey, require("./boards/createBoard.js"))
 app.use("/projects/create", apiKey, require("./projects/createProject.js"))
+app.use("/card/create", apiKey, require("./cards/createCard.js"))
