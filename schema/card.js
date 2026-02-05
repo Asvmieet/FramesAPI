@@ -4,12 +4,32 @@ const mongoose = require('mongoose')
 
 const cardSchema = new mongoose.Schema({
 
+board: {
+type: String,
+required: true,
+unique: false
+
+},
+
+column: {
+    type: String,
+    required: true,
+    unique: false
+    
+    },
+
+
 card_id: {
 type: String,
 required: true,
 unique: true
 
 },
+
+title: {
+    type: String,
+    required: true
+    },
 
 position: {
 type: Number,
@@ -45,7 +65,10 @@ comments: [{
 text: String,
 author: String, // User ID
 createdAt: {type: Date, default: Date.now}
-}]
+}],
+
+members:[String],
+
 
 
 })
