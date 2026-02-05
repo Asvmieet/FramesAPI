@@ -15,7 +15,8 @@ router.post("/", async (req, res) =>{
     const {title, boardID, position, columnID} = req.body;
 
     const card = new Card({
-        board_id: boardID,
+        card_id: crypto.randomUUID(),
+        board: boardID,
         title,
         position,
         isArchived: false,
