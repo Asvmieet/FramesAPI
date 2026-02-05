@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, ()=>{
-    console.log("Frames back end is Running ");
+    console.log("Frames back end is Running (Away)");
 })
 
 function apiKey(req, res, next){
@@ -23,4 +23,3 @@ function apiKey(req, res, next){
 // Routes
 
 app.use("/boards/create", apiKey, require("./boards/createBoard.js"))
-app.use("/project/create", apiKey, require("./projects/createProject.js"))
