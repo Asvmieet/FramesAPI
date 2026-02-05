@@ -1,4 +1,4 @@
-// Schema for Boards
+// Schema for Projects
 
 const mongoose = require('mongoose')
 
@@ -24,6 +24,6 @@ permissions:[String],
 
 })
 
-const project = mongoose.model('project', boardSchema);
+const project = mongoose.model('project', projectSchema);
 
 module.exports = project;
