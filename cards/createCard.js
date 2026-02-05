@@ -12,11 +12,16 @@ router.post("/", async (req, res) =>{
   try{
     const db = await dbConnect()
 
-    const {title, boardID} = req.body;
+    const {title, boardID, position, columnID} = req.body;
 
     const card = new Card({
         board_id: boardID,
         title,
+        position,
+        isArchived: false,
+        column: columnID
+        
+        
     })
 
     await card.save()
