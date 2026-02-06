@@ -8,7 +8,7 @@ const dbConnect = require("../database.js")
 const Card = require("../schema/card.js")
 const crypto = require("crypto")
 
-router.patch("/", async (req, res) =>{
+router.post("/", async (req, res) =>{
   try{
     const db = await dbConnect()
 	
