@@ -12,9 +12,9 @@ router.post("/", async (req, res) =>{
   try{
     const db = await dbConnect()
 	
-	const card = req.params
+	const cardID = req.params
     const {value, content} = req.body;
-	const edit = await Card.findOne({card_id: card})
+	const edit = await Card.findOne({card_id: cardID})
 	
 	
 	card[value] = content;
