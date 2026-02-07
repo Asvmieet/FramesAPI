@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
-
+require("dotenv").config({path: "frames.env"})
 app.use(express.json())
 
 app.get('/', (req, res) => {
@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, ()=>{
-    console.log("Frames back end is Running (Away)");
+    console.log(`Frames back end is Running (Away at ${port} miles per second)`);
 })
 
 function apiKey(req, res, next){
