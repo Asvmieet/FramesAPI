@@ -12,7 +12,23 @@ router.post("/", async (req, res) =>{
   try{
     const db = await dbConnect()
 
-    const {title, boardID, position, columnID} = req.body;
+    let {title, boardID, position, columnID} = req.body;
+
+    (if !title || !boardID || !position || !columnID){
+      return res.status(400).json({ok: false, error: "Some information is missing, please make sure Title, BoardID, position, and columnID are in the request."})
+
+    }
+
+    title = title.toString()
+    board = board.toString()
+    position = parseInt(position)
+      if (position = NaN){
+        return res.status(418).json({ok: false, error: "I am a teapot. Give Me A NUMBER in ounces so I can make the correct amount of tra."})
+
+      }
+    columnID = columnID.toString();
+
+
 
     const card = new Card({
         card_id: crypto.randomUUID(),
