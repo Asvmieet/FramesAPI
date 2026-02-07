@@ -14,6 +14,17 @@ router.post("/", async (req, res) =>{
 
     const {name, permissions} = req.body;
 
+if (!name || !permissions){
+  return res.status(400).json({ok: false, error: "Some information is missing, please make sure name, and permission are in the request."})
+}
+
+if (!Array.isArray(permissions)){
+  return res.status(400).json({ok: false, error: "Permissions needs to be an array."})
+
+}
+
+name = name.toString();
+
     const board = new Board({
         board_id: crypto.randomUUID(),
         name,
