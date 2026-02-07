@@ -14,7 +14,7 @@ router.post("/", async (req, res) =>{
 
     let {title, boardID, position, columnID} = req.body;
 
-    (if !title || !boardID || !position || !columnID){
+    if (!title || !boardID || !position || !columnID){
       return res.status(400).json({ok: false, error: "Some information is missing, please make sure Title, BoardID, position, and columnID are in the request."})
 
     }
