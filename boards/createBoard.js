@@ -12,7 +12,7 @@ router.post("/", async (req, res) =>{
   try{
     const db = await dbConnect()
 
-    const {name, permissions} = req.body;
+    let {name, permissions} = req.body;
 
 if (!name || !permissions){
   return res.status(400).json({ok: false, error: "Some information is missing, please make sure name, and permission are in the request."})

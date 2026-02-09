@@ -30,7 +30,7 @@ if (!cardID || !boardID){
 cardID = cardID.toString()
 boardID = boardID.toString()
 
-// Edit the card
+// Delete the card
 	
 	
 
