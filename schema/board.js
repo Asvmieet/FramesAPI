@@ -18,7 +18,8 @@ required: true,
 },
 
 
-permissions:[String],
+permissionsWrite:[String],
+permissionsRead:[String],
 
 
 

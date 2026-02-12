@@ -22,7 +22,7 @@ router.post("/", async (req, res) =>{
     title = title.toString()
     boardID = boardID.toString()
     position = parseInt(position)
-      if (position = NaN){
+      if (isNaN(position)){
         return res.status(418).json({ok: false, error: "I am a teapot. Give Me A NUMBER in ounces so I can make the correct amount of tra."})
 
       }

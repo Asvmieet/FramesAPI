@@ -27,4 +27,9 @@ app.use("/projects/create", apiKey, require("./projects/createProject.js"))
 app.use("/card/create", apiKey, require("./cards/createCard.js"))
 app.use("/card/edit", apiKey, require("./cards/editCard.js"))
 app.use("/card/delete", apiKey, require("./cards/deleteCard.js"))
-app.use("/boards/delete", apiKey, require("./boards/deleteBoard.js"))
+
+// Auth
+
+app.use("/auth/register", apiKey, require("./auth/register.js"))
+app.use("/auth/login", apiKey, require("./auth/login.js"))
+
