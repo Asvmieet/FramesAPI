@@ -10,6 +10,8 @@ const crypto = require("crypto")
 
 router.post("/", async (req, res) =>{
   try{
+
+    
     const db = await dbConnect()
 
     let {title, boardID, position, columnID} = req.body;
@@ -18,6 +20,16 @@ router.post("/", async (req, res) =>{
       return res.status(400).json({ok: false, error: "Some information is missing, please make sure Title, BoardID, position, and columnID are in the request."})
 
     }
+
+    // check for user perms
+
+    const {hasBoardPermission} = require("../auth/perms.js") 
+    const authSys_token = req.headers.authorization?.split(" ")[1]
+    if (!authSys_token) return res.status(401).json({oK: false, error: "Please include a token in your response."})
+    const authSys_editPerms = await hasBoardPermission(authSys_token,boardID,"write")
+  if (!authSys_editPerms) return res.status(403).json({ok: false, error: "You need write permissions to edit this board."})
+
+
 
     title = title.toString()
     boardID = boardID.toString()

@@ -28,6 +28,19 @@ router.patch("/:cardID", async (req, res) =>{
 return res.status(403).json({ok: false, error: "Cannot update card for security reasons."})
       }
 
+          // check for user perms
+
+    const {hasBoardPermission} = require("../auth/perms.js") 
+    const authSys_token = req.headers.authorization?.split(" ")[1]
+    const authSys_cardID = await Card.findOne({card_id: cardID})
+    if (!authSys_cardID) return;
+    const authSys_boardID = authSys_cardID.board
+    if (!authSys_token) return res.status(401).json({oK: false, error: "Please include a token in your response."})
+    const authSys_editPerms = await hasBoardPermission(authSys_token,authSys_boardID,"write")
+  if (!authSys_editPerms) return res.status(403).json({ok: false, error: "You need write permissions to edit this board."})
+
+
+
 
 const allowedFields = Object.keys(Card.schema.paths)
       .filter(field =>

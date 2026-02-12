@@ -3,7 +3,7 @@ const dbConnect = require("../database.js")
 const jwt = require("jsonwebtoken")
 require("dotenv").config({path: "frames.env"})
 
-const board = require("./schema/board.js");
+const board = require("../schema/board.js");
 
 async function hasBoardPermission(jwtKey, boardID,permType){
 
