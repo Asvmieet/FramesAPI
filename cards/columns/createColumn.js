@@ -4,8 +4,8 @@
 
 const express = require("express");
 const router = express.Router();
-const dbConnect = require("../database.js")
-const Column = require("../schema/column.js")
+const dbConnect = require(".../database.js")
+const Column = require(".../schema/column.js")
 const crypto = require("crypto")
 
 router.post("/", async (req, res) =>{
@@ -23,7 +23,7 @@ router.post("/", async (req, res) =>{
 
     // check for user perms
 
-    const {hasBoardPermission} = require("../auth/perms.js") 
+    const {hasBoardPermission} = require(".../auth/perms.js") 
     const authSys_token = req.headers.authorization?.split(" ")[1]
     if (!authSys_token) return res.status(401).json({oK: false, error: "Please include a token in your response."})
     const authSys_editPerms = await hasBoardPermission(authSys_token,boardID,"write")
