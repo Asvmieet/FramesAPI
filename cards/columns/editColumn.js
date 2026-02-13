@@ -4,8 +4,8 @@
 
 const express = require("express");
 const router = express.Router();
-const dbConnect = require(".../database.js")
-const Column = require(".../schema/column.js")
+const dbConnect = require("~/database.js")
+const Column = require("~/schema/column.js")
 const crypto = require("crypto")
 
 router.patch("/:columnID", async (req, res) =>{
