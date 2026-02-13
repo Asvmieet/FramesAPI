@@ -22,7 +22,8 @@ router.patch("/:cardID", async (req, res) =>{
 // Security & Validation
     if (value && content !== undefined && cardID){
       cardID = cardID.toString();
-      value = value.toString()
+      value = value.toString();
+      content = content.toString();
 
       if (["__proto__", "constructor", "prototype"].includes(value)){
 return res.status(403).json({ok: false, error: "Cannot update card for security reasons."})
