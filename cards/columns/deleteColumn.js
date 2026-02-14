@@ -47,7 +47,7 @@ boardID = boardID.toString()
 	
 	
 
-const edit = await Column.findOneAndDelete({column_id: cardID, board: boardID})
+const edit = await Column.findOneAndDelete({column_id: columnID, board: boardID})
 const editCards = await Card.deleteMany({column: columnID})
 
 
