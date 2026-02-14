@@ -42,7 +42,7 @@ router.post("/", async (req, res) =>{
 
 
     const column = new Column({
-        column: crypto.randomUUID(),
+        column_id: crypto.randomUUID(),
         board: boardID,
         project: "?",
         position,
