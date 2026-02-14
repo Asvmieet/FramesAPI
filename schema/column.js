@@ -41,6 +41,6 @@ default: 0
 
 })
 
-const col = mongoose.model('column', cardSchema);
+const col = mongoose.model('column', colSchema);
 
 module.exports = col;

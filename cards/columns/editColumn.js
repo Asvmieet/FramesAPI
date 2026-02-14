@@ -4,8 +4,8 @@
 
 const express = require("express");
 const router = express.Router();
-const dbConnect = require("~/database.js")
-const Column = require("~/schema/column.js")
+const dbConnect = require("../../database.js")
+const Column = require("../../schema/column.js")
 const crypto = require("crypto")
 
 router.patch("/:columnID", async (req, res) =>{
@@ -31,7 +31,7 @@ return res.status(403).json({ok: false, error: "Cannot update column for securit
 
           // check for user perms
 
-    const {hasBoardPermission} = require(".../auth/perms.js") 
+    const {hasBoardPermission} = require("../../auth/perms.js") 
     const authSys_token = req.headers.authorization?.split(" ")[1]
     const authSys_cardID = await Column.findOne({column_id: columnID})
     if (!authSys_cardID) return;
