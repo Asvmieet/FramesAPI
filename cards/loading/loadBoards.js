@@ -4,11 +4,10 @@
 
 const express = require("express");
 const router = express.Router();
-const dbConnect = require("../database.js")
-const Board = require("../schema/board.js")
-const crypto = require("crypto")
+const dbConnect = require("../../database.js")
+const Board = require("../../schema/board.js")
 
-router.fetch("/", async (req, res) =>{
+router.get("/", async (req, res) =>{
   try{
     const db = await dbConnect()
 
