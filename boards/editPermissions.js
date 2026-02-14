@@ -22,8 +22,8 @@ router.patch("/:boardID", async (req, res) =>{
 // Security & Validation
     if (type && userID && boardID){
       boardID = boardID.toString();
-      value = value.toString();
-      content = content.toString();
+      userID = userID.toString();
+      type = type.toString();
 
 
 
