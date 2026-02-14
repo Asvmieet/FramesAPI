@@ -2,10 +2,6 @@
 // Args: Board ID, Page ID, Column ID
 // Code: Be-Cc-D
 
-// DELETE
-// Args: Board ID, Card ID, 
-// Code: Be-C-D
-
 const express = require("express");
 const router = express.Router();
 const dbConnect = require("../database.js")
