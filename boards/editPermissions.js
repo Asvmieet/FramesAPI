@@ -14,20 +14,18 @@ router.patch("/:boardID", async (req, res) =>{
     const db = await dbConnect()
 	
 	let boardID = req.params.boardID
-  let {value, content} = req.body;
+  let {type, userID} = req.body;
   
 
 
 
 // Security & Validation
-    if (value && content !== undefined && boardID){
+    if (type && userID && boardID){
       boardID = boardID.toString();
       value = value.toString();
       content = content.toString();
 
-      if (["__proto__", "constructor", "prototype"].includes(value)){
-return res.status(403).json({ok: false, error: "Cannot update card for security reasons."})
-      }
+
 
           // check for user perms
 
@@ -38,43 +36,43 @@ return res.status(403).json({ok: false, error: "Cannot update card for security 
         if (!authSys_editPerms) return res.status(403).json({ok: false, error: "You need write permissions to edit this board."})
       
 
+// Edit the permissions
+    
 
-const allowedFields = Object.keys(Card.schema.paths)
-      .filter(field =>
-        !["_id", "__v", "card_id", "board"].includes(field)
-      )
+	if (type == "write"){
+        await Board.updateOne({board_id: boardID}, {
 
-      if (!allowedFields.includes(value)){
-        return res.status(403).json({ok: false, error: "Cannot update this field."})
+            $addToSet: {permissionsWrite: userID},
+            $pull: {permissionsRead: userID}
 
-      }
+        })
+
+    } else if (type == "read"){
+        await Board.updateOne({board_id: boardID}, {
+
+            $addToSet: {permissionsRead: userID},
+            $pull: {permissionsWrite: userID}
+
+        })
+    }
 
 
-// Edit the card
-	
-	
 
-const edit = await Card.findOneAndUpdate({card_id: cardID}, {$set: {[value]: content}}, {new: true, runValidators: true})
-
-if (!edit){
-  return res.status(404).json({ok: false, error: "Card not found"})
-
-}
 
     res.status(200).json({
         ok: true,
-        edit
+
     })
 
     // Complete the request
   } else {
-    res.status(400).json({ok: false, error: "Failed to update card - Missing Information"})
+    res.status(400).json({ok: false, error: "Failed to update permissions - Missing Information"})
 
   }
 
   }catch(err){
-    console.log(`FRAMES_ERROR - Update Card: ${err}`)
-    res.status(500).json({ok: false, error: "Failed to update card, check logs for more information."})
+    console.log(`FRAMES_ERROR - Update Permissions: ${err}`)
+    res.status(500).json({ok: false, error: "Failed to update permissions, check logs for more information."})
   }
 
 })

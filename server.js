@@ -30,6 +30,9 @@ app.use("/card/delete", apiKey, require("./cards/deleteCard.js"))
 app.use("/column/create", apiKey, require("./cards/columns/createColumn.js"))
 app.use("/column/delete", apiKey, require("./cards/columns/deleteColumn.js"))
 app.use("/column/edit", apiKey, require("./cards/columns/editColumn.js"))
+app.use("/boards/permissions", apiKey, require("./boards/editPermissions.js"))
+app.use("/interface/loadHome", apiKey, require("./cards/loading/loadBoards.js"))
+
 
 // Auth
 
