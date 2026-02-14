@@ -4,7 +4,7 @@
 
 const express = require("express");
 const router = express.Router();
-const dbConnect = require("../database.js")
+const dbConnect = require("../../database.js")
 const Column = require("../../schema/column.js")
 const board = require("../schema/board.js");
 const col = require("../../schema/column.js");
