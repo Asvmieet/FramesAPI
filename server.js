@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
+const cors = require("cors")
 require("dotenv").config({path: "frames.env"})
 app.use(express.json())
 
@@ -19,6 +20,12 @@ app.listen(port, ()=>{
     //}
     //next()
 //}
+
+app.use(cors({
+    origin: "*",
+    methods: ["GET", "POST", "OPTIONS", "PATCH"],
+    allowedHeaders: ["Content-Type", "authorization"]
+}))
 
 // Routes
 
