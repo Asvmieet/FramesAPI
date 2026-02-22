@@ -45,4 +45,5 @@ app.use("/interface/loadHome", require("./cards/loading/loadBoards.js"))
 
 app.use("/auth/register", require("./auth/register.js"))
 app.use("/auth/login", require("./auth/login.js"))
+app.use("/auth/validate", require("./auth/validate.js"))
 
