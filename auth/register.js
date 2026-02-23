@@ -48,8 +48,8 @@ const token = jwt.sign({user_id: user.user_id}, process.env.JWT_SECRET, {expires
 
 res.cookie("frames_token", token, {
   httpOnly: true,
-  sameSite: "strict",
-  secure: false,
+  sameSite: "None",
+  secure: true,
   maxAge: 7 * 24 * 60 * 60 * 1000
 })
 
