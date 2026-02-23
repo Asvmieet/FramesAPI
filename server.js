@@ -23,10 +23,8 @@ app.listen(port, ()=>{
 //}
 
 app.use(cors({
-    origin:[
-      "https://frames-web-three.vercel.app",
-      "http://localhost:5000"
-    ],
+    origin: "https://frames-web-three.vercel.app",
+
     methods: ["GET", "POST", "OPTIONS", "PATCH"],
     allowedHeaders: ["Content-Type", "authorization"],
     credentials: true
