@@ -32,7 +32,7 @@ return res.status(403).json({ok: false, error: "Cannot update column for securit
           // check for user perms
 
     const {hasBoardPermission} = require("../../auth/perms.js") 
-    const authSys_token = req.headers.authorization?.split(" ")[1]
+    const authSys_token = req.cookies.frames_token || req.headers.authorization?.split(" ")[1]
     const authSys_cardID = await Column.findOne({column_id: columnID})
     if (!authSys_cardID) return;
     const authSys_boardID = authSys_cardID.board

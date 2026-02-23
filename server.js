@@ -2,9 +2,10 @@ const express = require('express')
 const app = express()
 const port = 3000
 const cors = require("cors")
+const cookieParser = require("cookie-parser")
 require("dotenv").config({path: "frames.env"})
 app.use(express.json())
-
+app.use(cookieParser())
 app.get('/', (req, res) => {
     res.json({status: "ok", message:"Frames backend is running."})
 })

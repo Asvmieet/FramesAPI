@@ -45,7 +45,15 @@ const user = new User({
 await user.save()
 
 const token = jwt.sign({user_id: user.user_id}, process.env.JWT_SECRET, {expiresIn: "7d"})
-    res.status(201).json({
+
+res.cookie("frames_token", token, {
+  httpOnly: true,
+  sameSite: "strict",
+  secure: false,
+  maxAge: 7 * 24 * 60 * 60 * 1000
+})
+
+res.status(201).json({
         ok: true,
         token
         

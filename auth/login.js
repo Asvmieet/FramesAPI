@@ -40,7 +40,15 @@ if (!passCheck) {
 }
 
 const token = jwt.sign({user_id: userAccount.user_id}, process.env.JWT_SECRET, {expiresIn: "7d"})
-    res.status(200).json({
+
+res.cookie("frames_token", token, {
+  httpOnly: true,
+  sameSite: "strict",
+  secure: false,
+  maxAge: 7 * 24 * 60 * 60 * 1000
+})
+
+res.status(200).json({
         ok: true,
         token
         

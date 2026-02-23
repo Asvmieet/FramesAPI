@@ -32,7 +32,7 @@ return res.status(403).json({ok: false, error: "Cannot update card for security 
           // check for user perms
 
           const {hasBoardPermission} = require("../auth/perms.js") 
-          const authSys_token = req.headers.authorization?.split(" ")[1]
+          const authSys_token = req.cookies.frames_token || req.headers.authorization?.split(" ")[1]
           if (!authSys_token) return res.status(401).json({oK: false, error: "Please include a token in your response."})
           const authSys_editPerms = await hasBoardPermission(authSys_token,boardID,"write")
         if (!authSys_editPerms) return res.status(403).json({ok: false, error: "You need write permissions to edit this board."})
