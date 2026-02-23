@@ -25,7 +25,8 @@ app.listen(port, ()=>{
 app.use(cors({
     origin: "*",
     methods: ["GET", "POST", "OPTIONS", "PATCH"],
-    allowedHeaders: ["Content-Type", "authorization"]
+    allowedHeaders: ["Content-Type", "authorization"],
+    credentials: true
 }))
 
 // Routes
