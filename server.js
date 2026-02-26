@@ -4,6 +4,17 @@ const port = 3000
 const cors = require("cors")
 const cookieParser = require("cookie-parser")
 require("dotenv").config({path: "frames.env"})
+
+app.set("trust proxy", 1);
+
+app.use(cors({
+    origin: "https://frames-web-three.vercel.app",
+
+    methods: ["GET", "POST", "OPTIONS", "PATCH"],
+    allowedHeaders: ["Content-Type", "authorization"],
+    credentials: true
+}))
+
 app.use(express.json())
 app.use(cookieParser())
 app.get('/', (req, res) => {
@@ -22,15 +33,7 @@ app.listen(port, ()=>{
     //next()
 //}
 
-app.set("trust proxy", 1);
 
-app.use(cors({
-    origin: "https://frames-web-three.vercel.app",
-
-    methods: ["GET", "POST", "OPTIONS", "PATCH"],
-    allowedHeaders: ["Content-Type", "authorization"],
-    credentials: true
-}))
 
 // Routes
 
