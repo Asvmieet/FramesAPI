@@ -22,6 +22,8 @@ app.listen(port, ()=>{
     //next()
 //}
 
+app.set("trust proxy", 1);
+
 app.use(cors({
     origin: "https://frames-web-three.vercel.app",
 
