@@ -45,6 +45,8 @@ res.cookie("frames_token", token, {
   httpOnly: true,
   sameSite: "None",
   secure: true,
+  domain: "framesapi.onrender.com",
+  path: "/",
   maxAge: 7 * 24 * 60 * 60 * 1000
 })
 
