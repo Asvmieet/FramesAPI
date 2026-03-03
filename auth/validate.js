@@ -11,9 +11,11 @@ require("dotenv").config({path: "frames.env"})
 
 router.get("/", async (req, res) => {
 try{
-    const token = req.cookies.frames_token;
+    const token =
+        req.headers.authorization?.split(" ")[1] ||
+        req.cookies.frames_token;
     if (!token){
-        res.status(401).json({ok: false, message:"No token provided"})
+        return res.status(401).json({ok: false, message:"No token provided"})
     }
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
 

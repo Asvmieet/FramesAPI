@@ -46,13 +46,6 @@ await user.save()
 
 const token = jwt.sign({user_id: user.user_id}, process.env.JWT_SECRET, {expiresIn: "7d"})
 
-res.cookie("frames_token", token, {
-  httpOnly: true,
-  sameSite: "None",
-  secure: true,
-  maxAge: 7 * 24 * 60 * 60 * 1000
-})
-
 res.status(201).json({
         ok: true,
         token
