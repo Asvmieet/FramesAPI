@@ -6,7 +6,10 @@ const express = require("express");
 const router = express.Router();
 const dbConnect = require("../database.js")
 const Board = require("../schema/board.js")
+const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
 const crypto = require("crypto")
+require("dotenv").config({path: "frames.env"})
 
 router.post("/", async (req, res) =>{
   try{
@@ -24,7 +27,9 @@ if (!Array.isArray(permissions)){
 }
 
 name = name.toString();
+  const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
 
+owner_id = decodedToken.user_id
     const board = new Board({
         board_id: crypto.randomUUID(),
         name,
