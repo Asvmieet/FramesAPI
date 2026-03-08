@@ -15,13 +15,13 @@ router.post("/", async (req, res) =>{
   try{
     const db = await dbConnect()
 
-    let {name, permissions, owner_id} = req.body;
+    let {name, permsWrite, owner_id,permsRead} = req.body;
 
-if (!name || !permissions){
+if (!name || !permsWrite || !owner_id || !permsRead){
   return res.status(400).json({ok: false, error: "Some information is missing, please make sure name, and permission are in the request."})
 }
 
-if (!Array.isArray(permissions)){
+if (!Array.isArray(permsWrite) || !Array.isArray(permsRead)){
   return res.status(400).json({ok: false, error: "Permissions needs to be an array."})
 
 }
@@ -34,7 +34,8 @@ owner_id = decodedToken.user_id
         board_id: crypto.randomUUID(),
         name,
         owner_id,
-        permissions: permissions
+        permissionsWrite: permsWrite,
+        permissionsRead: permsRead,
     })
 
     await board.save()
