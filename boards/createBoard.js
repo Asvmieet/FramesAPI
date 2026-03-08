@@ -27,7 +27,7 @@ if (!Array.isArray(permsWrite) || !Array.isArray(permsRead)){
 }
 
 name = name.toString();
-  const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
+  const decodedToken = jwt.verify(owner_id, process.env.JWT_SECRET)
 
 owner_id = decodedToken.user_id
     const board = new Board({
