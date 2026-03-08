@@ -24,12 +24,13 @@ let userID = decodedToken.user_id
 
 let boardsWrite = await Board.find({permissionsWrite: userID})
 let boardsRead = await Board.find({permissionsRead: userID})
-
+let boardsOwner = await Board.find({owner_id: userID})
 
     res.status(200).json({
         ok: true,
         write: boardsWrite,
-        read: boardsRead
+        read: boardsRead,
+        owner: boardsOwner
     })
   }catch(err){
     console.log(`FRAMES_ERROR - Load Boards: ${err}`)
