@@ -14,6 +14,7 @@ unique: true
 username: {
 type: String,
 required: true,
+unique: true,
 
 },
 
