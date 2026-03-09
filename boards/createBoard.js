@@ -35,6 +35,8 @@ owner_id = decodedToken.user_id
 let permsWriteLength = permsWrite.length
 let permsReadLength = permsRead.length
 
+if (!permsWriteLength = 0){
+
 for (let count = 0; count < permsWriteLength; count++){
   const user = await User.findOne({ username: permsWrite[count] })
   if (user){
@@ -43,6 +45,9 @@ for (let count = 0; count < permsWriteLength; count++){
     return res.status(400).json({ ok: false, error: `User not found: "${permsWrite[count]}". All usernames in permissions must be existing users.` })
   }
 }
+}
+
+if (!permsReadLength = 0){
 
 for (let count = 0; count < permsReadLength; count++){
   const user = await User.findOne({ username: permsRead[count] })
@@ -51,6 +56,7 @@ for (let count = 0; count < permsReadLength; count++){
   } else {
     return res.status(400).json({ ok: false, error: `User not found: "${permsRead[count]}". All usernames in permissions must be existing users.` })
   }
+}
 }
 
     const board = new Board({
