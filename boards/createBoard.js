@@ -6,6 +6,7 @@ const express = require("express");
 const router = express.Router();
 const dbConnect = require("../database.js")
 const Board = require("../schema/board.js")
+const User = require("../schema/user.js")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const crypto = require("crypto")
@@ -30,6 +31,30 @@ name = name.toString();
   const decodedToken = jwt.verify(owner_id, process.env.JWT_SECRET)
 
 owner_id = decodedToken.user_id
+
+let permsWriteLength = permsWrite.length
+let permsReadLength = permsRead.length
+
+for (let count = 0; count < permsWriteLength;count++){
+  let UID = await User.find({username: permsWrite[count]})
+  if (UID){
+    permsWrite[count] = UID.user_id;
+  } else {
+    console.log("Create Board: Permissions add error - Could not find user by username")
+  }
+
+}
+
+for (let count = 0; count < permsReadLength;count++){
+  let UID = await User.find({username: permsWrite[count]})
+  if (UID){
+    permsRead[count] = UID.user_id;
+  } else {
+    console.log("Create Board: Permissions add error - Could not find user by username")
+  }
+
+}
+
     const board = new Board({
         board_id: crypto.randomUUID(),
         name,
