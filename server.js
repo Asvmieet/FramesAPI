@@ -47,6 +47,8 @@ app.use("/column/delete", require("./cards/columns/deleteColumn.js"))
 app.use("/column/edit", require("./cards/columns/editColumn.js"))
 app.use("/boards/permissions", require("./boards/editPermissions.js"))
 app.use("/interface/loadHome", require("./cards/loading/loadBoards.js"))
+app.use("/interface/loadPage", require("./cards/loading/loadPage.js"))
+
 
 
 // Auth
