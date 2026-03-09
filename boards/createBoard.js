@@ -35,7 +35,7 @@ owner_id = decodedToken.user_id
 let permsWriteLength = permsWrite.length
 let permsReadLength = permsRead.length
 
-if (!permsWriteLength = 0){
+if (!permsWriteLength == 0){
 
 for (let count = 0; count < permsWriteLength; count++){
   const user = await User.findOne({ username: permsWrite[count] })
@@ -47,7 +47,7 @@ for (let count = 0; count < permsWriteLength; count++){
 }
 }
 
-if (!permsReadLength = 0){
+if (!permsReadLength == 0){
 
 for (let count = 0; count < permsReadLength; count++){
   const user = await User.findOne({ username: permsRead[count] })
