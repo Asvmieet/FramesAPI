@@ -40,7 +40,7 @@ for (let count = 0; count < permsWriteLength; count++){
   if (user){
     permsWrite[count] = user.user_id;
   } else {
-    console.log("Create Board: Permissions add error - Could not find user by username:", permsWrite[count])
+    return res.status(400).json({ ok: false, error: `User not found: "${permsWrite[count]}". All usernames in permissions must be existing users.` })
   }
 }
 
@@ -49,7 +49,7 @@ for (let count = 0; count < permsReadLength; count++){
   if (user){
     permsRead[count] = user.user_id;
   } else {
-    console.log("Create Board: Permissions add error - Could not find user by username:", permsRead[count])
+    return res.status(400).json({ ok: false, error: `User not found: "${permsRead[count]}". All usernames in permissions must be existing users.` })
   }
 }
 
