@@ -35,24 +35,22 @@ owner_id = decodedToken.user_id
 let permsWriteLength = permsWrite.length
 let permsReadLength = permsRead.length
 
-for (let count = 0; count < permsWriteLength;count++){
-  let UID = await User.find({username: permsWrite[count]})
-  if (UID){
-    permsWrite[count] = UID.user_id;
+for (let count = 0; count < permsWriteLength; count++){
+  const user = await User.findOne({ username: permsWrite[count] })
+  if (user){
+    permsWrite[count] = user.user_id;
   } else {
-    console.log("Create Board: Permissions add error - Could not find user by username")
+    console.log("Create Board: Permissions add error - Could not find user by username:", permsWrite[count])
   }
-
 }
 
-for (let count = 0; count < permsReadLength;count++){
-  let UID = await User.find({username: permsWrite[count]})
-  if (UID){
-    permsRead[count] = UID.user_id;
+for (let count = 0; count < permsReadLength; count++){
+  const user = await User.findOne({ username: permsRead[count] })
+  if (user){
+    permsRead[count] = user.user_id;
   } else {
-    console.log("Create Board: Permissions add error - Could not find user by username")
+    console.log("Create Board: Permissions add error - Could not find user by username:", permsRead[count])
   }
-
 }
 
     const board = new Board({
