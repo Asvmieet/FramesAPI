@@ -32,8 +32,8 @@ router.get("/", async (req, res) => {
     }
 
     const [columns, cards] = await Promise.all([
-      Column.find({ board: boardID }).sort({ position: 1 }).lean(),
-      Card.find({ board: boardID }).sort({ column: 1, position: 1 }).lean(),
+      Column.find({ board: boardID }).sort({ position: 1 }),
+      Card.find({ board: boardID }).sort({ column: 1, position: 1 }),
     ]);
 
     res.status(200).json({
