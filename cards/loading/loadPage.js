@@ -25,10 +25,9 @@ router.get("/", async (req, res) => {
     }
 
     const canRead = await hasBoardPermission(token, boardID, "read");
-    const canWrite = await hasBoardPermission(token, boardID, "write");
 
 
-    if (!canRead || !canWrite) {
+    if (!canRead) {
       return res.status(403).json({ ok: false, message: "You don't have permission to view this board." });
     }
 
