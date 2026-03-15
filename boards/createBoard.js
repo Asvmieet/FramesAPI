@@ -42,7 +42,7 @@ for (let count = 0; count < permsWriteLength; count++){
   // debugging
   console.log(`Checking user: "${permsWrite[count]}"`)
   const user = await User.findOne({ username: permsWrite[count] })
-  if (user.username == permsWrite[count]){
+  if (user){
     writeID[count] = user.user_id;
   } else {
     return res.status(400).json({ ok: false, error: `User not found: "${permsWrite[count]}". All usernames in permissions must be existing users.` })
