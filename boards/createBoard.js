@@ -7,10 +7,8 @@ const router = express.Router();
 const dbConnect = require("../database.js")
 const Board = require("../schema/board.js")
 const User = require("../schema/user.js")
-const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const crypto = require("crypto");
-const { write } = require("fs");
 require("dotenv").config({path: "frames.env"})
 
 router.post("/", async (req, res) =>{
@@ -38,7 +36,7 @@ let permsReadLength = permsRead.length
 
 let writeID = []
 let readID = []
-if (!permsWriteLength == 1){
+if (permsWriteLength >= 1){
 
 for (let count = 0; count < permsWriteLength; count++){
   const user = await User.findOne({ username: permsWrite[count] })
@@ -50,7 +48,7 @@ for (let count = 0; count < permsWriteLength; count++){
 }
 }
 
-if (!permsReadLength == 1){
+if (permsReadLength >= 1){
 
 for (let count = 0; count < permsReadLength; count++){
   const user = await User.findOne({ username: permsRead[count] })
