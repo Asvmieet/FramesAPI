@@ -40,7 +40,7 @@ if (permsWriteLength >= 1){
 
 for (let count = 0; count < permsWriteLength; count++){
   // debugging
-  let currentUser = permsWrite[count]
+  let currentUser = permsWrite[count].trim()
   console.log(`Checking user: "${permsWrite[count]}", var: "${currentUser}"`)
   const user = await User.findOne({ username: currentUser })
   console.log(user)
