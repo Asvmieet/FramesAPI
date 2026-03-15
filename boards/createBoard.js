@@ -43,6 +43,7 @@ for (let count = 0; count < permsWriteLength; count++){
   let currentUser = permsWrite[count]
   console.log(`Checking user: "${permsWrite[count]}", var: "${currentUser}"`)
   const user = await User.findOne({ username: currentUser })
+  console.log(user)
   if (user){
     writeID[count] = user.user_id;
   } else {
