@@ -9,7 +9,8 @@ const Board = require("../schema/board.js")
 const User = require("../schema/user.js")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
-const crypto = require("crypto")
+const crypto = require("crypto");
+const { write } = require("fs");
 require("dotenv").config({path: "frames.env"})
 
 router.post("/", async (req, res) =>{
@@ -35,12 +36,14 @@ owner_id = decodedToken.user_id
 let permsWriteLength = permsWrite.length
 let permsReadLength = permsRead.length
 
+let writeID = []
+let readID = []
 if (!permsWriteLength == 1){
 
 for (let count = 0; count < permsWriteLength; count++){
   const user = await User.findOne({ username: permsWrite[count] })
   if (user){
-    permsWrite[count] = user.user_id;
+    writeID[count] = user.user_id;
   } else {
     return res.status(400).json({ ok: false, error: `User not found: "${permsWrite[count]}". All usernames in permissions must be existing users.` })
   }
@@ -52,7 +55,7 @@ if (!permsReadLength == 1){
 for (let count = 0; count < permsReadLength; count++){
   const user = await User.findOne({ username: permsRead[count] })
   if (user){
-    permsRead[count] = user.user_id;
+    readID[count] = user.user_id;
   } else {
     return res.status(400).json({ ok: false, error: `User not found: "${permsRead[count]}". All usernames in permissions must be existing users.` })
   }
@@ -63,8 +66,8 @@ for (let count = 0; count < permsReadLength; count++){
         board_id: crypto.randomUUID(),
         name,
         owner_id,
-        permissionsWrite: permsWrite,
-        permissionsRead: permsRead,
+        permissionsWrite: writeID,
+        permissionsRead: readID,
     })
 
     await board.save()
