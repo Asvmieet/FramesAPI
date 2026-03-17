@@ -8,7 +8,10 @@ require("dotenv").config({path: "frames.env"})
 app.set("trust proxy", 1);
 
 app.use(cors({
-    origin: "https://frames-web-three.vercel.app",
+    origin: [
+"https://frames-web-three.vercel.app",   
+"https://framesweb-1.onrender.com"
+    ],
 
     methods: ["GET", "POST", "OPTIONS", "PATCH"],
     allowedHeaders: ["Content-Type", "authorization"],
