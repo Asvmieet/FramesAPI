@@ -36,7 +36,7 @@ let permsReadLength = permsRead.length
 
 let writeID = []
 let readID = []
-if (permsWriteLength >= 1){
+if (permsWriteLength >= 1 && permsWrite[0] !== "/" && permsWrite[0] !== ""){
 
 for (let count = 0; count < permsWriteLength; count++){
   // debugging
@@ -53,7 +53,7 @@ for (let count = 0; count < permsWriteLength; count++){
 }
 }
 
-if (permsReadLength >= 1){
+if (permsReadLength >= 1 && permsRead[0] !== "/" && permsRead[0] !== ""){
 
 for (let count = 0; count < permsReadLength; count++){
   const user = await User.findOne({ username: permsRead[count] })
