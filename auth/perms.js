@@ -13,9 +13,9 @@ jwtKey = jwt.verify(jwtKey, process.env.JWT_SECRET)
 const userID = jwtKey.user_id;
 
     if (permType == "write"){
-        return BoardDoc.permissionsWrite.includes(userID) || BoardDoc.owner == userID
+        return BoardDoc.permissionsWrite.includes(userID) || BoardDoc.owner_id == userID
     } else if (permType == "read"){
-        return BoardDoc.permissionsRead.includes(userID)||  BoardDoc.permissionsWrite.includes(userID) || BoardDoc.owner == userID
+        return BoardDoc.permissionsRead.includes(userID)||  BoardDoc.permissionsWrite.includes(userID) || BoardDoc.owner_id == userID
 
 
     } else {
