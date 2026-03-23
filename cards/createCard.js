@@ -53,7 +53,8 @@ router.post("/", async (req, res) =>{
         position,
         isArchived: false,
         column: columnID,
-        description: description
+        description: description,
+        due_date: null
         
         
     })
