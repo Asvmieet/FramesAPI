@@ -4,10 +4,10 @@
 
 const express = require("express");
 const router = express.Router();
-const dbConnect = require("../../database.js");
-const Column = require("../../schema/column.js");
-const Card = require("../../schema/card.js");
-const { hasBoardPermission } = require("../../auth/perms.js");
+const dbConnect = require("../database.js");
+const Column = require("../schema/column.js");
+const Card = require("../schema/card.js");
+const { hasBoardPermission } = require("../auth/perms.js");
 require("dotenv").config({ path: "frames.env" });
 
 router.get("/", async (req, res) => {
