@@ -14,11 +14,15 @@ router.post("/", async (req, res) =>{
     
     const db = await dbConnect()
 
-    let {title, boardID, position, columnID} = req.body;
+    let {title, boardID, position, columnID,description} = req.body;
 
     if (!title || !boardID || !position || !columnID){
       return res.status(400).json({ok: false, error: "Some information is missing, please make sure Title, BoardID, position, and columnID are in the request."})
 
+    }
+
+    if(!description){
+      description = ""
     }
 
     // check for user perms
@@ -48,7 +52,8 @@ router.post("/", async (req, res) =>{
         title,
         position,
         isArchived: false,
-        column: columnID
+        column: columnID,
+        description: description
         
         
     })
