@@ -24,7 +24,11 @@ router.patch("/:cardID", async (req, res) =>{
       cardID = cardID.toString();
       value = value.toString();
       if (value == "due_date"){
+if (content == "" || content == "0"){
+  content = null
+} else {
         content = new Date(content)
+        }
       } else {
       content = content.toString();
       }
