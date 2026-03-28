@@ -16,22 +16,26 @@ router.patch("/:cardID", async (req, res) =>{
 	let cardID = req.params.cardID
   let {value, content} = req.body;
   
-
+  if (value == "due_date"){
+    if (content == "clear"){
+    
+      const del = await Card.findOneAndUpdate({card_id: cardID}, {$unset: {due_date: ""}}, {new: true, runValidators: true})
+    res.status(200).json({ok: true, del})
+    } else {
+            content = new Date(content)
+            }
+          } else {
+          content = content.toString();
+          }
 
 
 // Security & Validation
     if (value && content !== undefined && cardID){
       cardID = cardID.toString();
       value = value.toString();
-      if (value == "due_date"){
-if (content == "" || content == "0"){
-  content = null
-} else {
-        content = new Date(content)
-        }
-      } else {
-      content = content.toString();
-      }
+
+
+
 
       if (["__proto__", "constructor", "prototype"].includes(value)){
 return res.status(403).json({ok: false, error: "Cannot update card for security reasons."})
