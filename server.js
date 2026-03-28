@@ -3,9 +3,22 @@ const app = express()
 const port = 3000
 const cors = require("cors")
 const cookieParser = require("cookie-parser")
+const rateLimitPkg = require('express-rate-limit')
 require("dotenv").config({path: "frames.env"})
 
 app.set("trust proxy", 1);
+
+const limit = rateLimitPkg({
+    windowMs: 1 * 60 * 1000,
+    max: 15,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: {ok: false, error: "Too many requests. Please do not abuse the system!" }
+})
+
+
+app.use(limit)
+
 
 app.use(cors({
     origin: [
