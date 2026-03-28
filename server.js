@@ -46,6 +46,8 @@ app.use("/card/create", require("./cards/createCard.js"))
 app.use("/card/edit", require("./cards/editCard.js"))
 app.use("/card/delete", require("./cards/deleteCard.js"))
 app.use("/card/get", require("./cards/getCard.js"))
+app.use("/card/label", require("./cards/labels.js"))
+
 app.use("/column/create", require("./cards/columns/createColumn.js"))
 app.use("/column/delete", require("./cards/columns/deleteColumn.js"))
 app.use("/column/edit", require("./cards/columns/editColumn.js"))
