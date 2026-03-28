@@ -1,6 +1,6 @@
 // PATCH
-// Args: Board ID, Card ID, Value, New Value 
-// Code: Be-C-E
+// Args: Board ID, Card ID, Type, Name
+// Code: Be-C-L
 
 const express = require("express");
 const router = express.Router();
@@ -20,7 +20,7 @@ router.patch("/:cardID", async (req, res) =>{
 // Security & Validation
     if (type && name !== undefined && cardID){
       cardID = cardID.toString();
-      value = value.toString();
+      type = type.toString();
 
 
 
