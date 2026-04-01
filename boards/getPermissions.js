@@ -4,8 +4,8 @@
 
 const express = require("express");
 const router = express.Router();
-const dbConnect = require("../../database.js")
-const Board = require("../../schema/board.js")
+const dbConnect = require("../database.js")
+const Board = require("../schema/board.js")
 require("dotenv").config({path: "frames.env"})
 
 
