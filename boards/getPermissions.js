@@ -12,16 +12,16 @@ require("dotenv").config({path: "frames.env"})
 router.get("/", async (req, res) =>{
   try{
     const db = await dbConnect()
+    const boardID = (req.query.boardID || req.body?.boardID || "").toString();
 
 
 
-let boardsWrite = await Board.find({permissionsWrite: userID})
-let boardsRead = await Board.find({permissionsRead: userID})
+let board = await Board.findOne({board_id: boardID})
 
     res.status(200).json({
         ok: true,
-        write: boardsWrite,
-        read: boardsRead,
+        write: board.permissionsWrite,
+        read: board.permissionsRead,
     })
   }catch(err){
     console.log(`FRAMES_ERROR - Get Perms: ${err}`)

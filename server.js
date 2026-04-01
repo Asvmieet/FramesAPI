@@ -54,6 +54,7 @@ app.listen(port, ()=>{
 // Routes
 
 app.use("/boards/create", require("./boards/createBoard.js"))
+app.use("/boards/getPerms", require("./boards/getPermissions.js"))
 app.use("/projects/create", require("./projects/createProject.js"))
 app.use("/card/create", require("./cards/createCard.js"))
 app.use("/card/edit", require("./cards/editCard.js"))
