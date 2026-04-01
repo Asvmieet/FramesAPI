@@ -26,7 +26,7 @@ app.use(cors({
 "https://framesweb-1.onrender.com"
     ],
 
-    methods: ["GET", "POST", "OPTIONS", "PATCH"],
+    methods: ["GET", "POST", "OPTIONS", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "authorization"],
     credentials: true
 }))
