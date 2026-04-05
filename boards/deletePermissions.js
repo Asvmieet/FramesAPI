@@ -7,6 +7,7 @@ const router = express.Router();
 const dbConnect = require("../database.js")
 const Board = require("../schema/board.js")
 const crypto = require("crypto")
+const User = require("../schema/user.js")
 
 router.patch("/:boardID", async (req, res) =>{
   try{
@@ -14,15 +15,15 @@ router.patch("/:boardID", async (req, res) =>{
     const db = await dbConnect()
 	
 	let boardID = req.params.boardID
-  let {userID} = req.body;
+  let {username} = req.body;
   
 
 
 
 // Security & Validation
-    if (userID && boardID){
+    if (username && boardID){
       boardID = boardID.toString();
-      userID = userID.toString();
+      username = username.toString();
 
 
 
@@ -38,10 +39,12 @@ router.patch("/:boardID", async (req, res) =>{
 // Edit the permissions
     
 
-	
+	const user = await User.findOne({ username: username }).lean()
+
+    if(user){
         await Board.updateOne({board_id: boardID}, {
 
-            $pull: {permissionsRead: userID, permissionsWrite: userID}
+            $pull: {permissionsRead: user.user_id, permissionsWrite: user.user_id}
 
         })
 
@@ -50,10 +53,18 @@ router.patch("/:boardID", async (req, res) =>{
 
 
 
-    res.status(200).json({
+    return res.status(200).json({
         ok: true,
 
     })
+
+} else {
+   
+    return res.status(404).json({
+        ok: false,
+
+    }) 
+}
 
     // Complete the request
   } else {
