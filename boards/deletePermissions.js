@@ -14,7 +14,7 @@ router.patch("/:boardID", async (req, res) =>{
     const db = await dbConnect()
 	
 	let boardID = req.params.boardID
-  let {type, userID} = req.body;
+  let {userID} = req.body;
   
 
 
