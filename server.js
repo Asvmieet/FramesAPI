@@ -67,6 +67,7 @@ app.use("/card/label", require("./cards/labels.js"))
 app.use("/card/posEdit", require("./cards/posChanger.js"))
 
 app.use("/column/create", require("./cards/columns/createColumn.js"))
+app.use("/column/posChange", require("./cards/columns/colPosChanger.js"))
 app.use("/column/delete", require("./cards/columns/deleteColumn.js"))
 app.use("/column/edit", require("./cards/columns/editColumn.js"))
 app.use("/boards/permissions", require("./boards/editPermissions.js"))
