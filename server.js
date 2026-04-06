@@ -55,6 +55,7 @@ app.listen(port, ()=>{
 
 app.use("/boards/create", require("./boards/createBoard.js"))
 app.use("/boards/edit", require("./boards/editBoard.js"))
+app.use("/boards/delete", require("./boards/deleteBoard.js"))
 app.use("/boards/getPerms", require("./boards/getPermissions.js"))
 app.use("/boards/deletePerms", require("./boards/deletePermissions.js"))
 app.use("/projects/create", require("./projects/createProject.js"))
