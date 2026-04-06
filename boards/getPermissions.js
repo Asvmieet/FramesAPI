@@ -7,6 +7,7 @@ const router = express.Router();
 const dbConnect = require("../database.js")
 const Board = require("../schema/board.js")
 require("dotenv").config({path: "frames.env"})
+const Card = require("../schema/card.js")
 
 
 router.get("/", async (req, res) =>{
@@ -17,6 +18,16 @@ router.get("/", async (req, res) =>{
 
 
 let board = await Board.findOne({board_id: boardID})
+
+for (let a = 0; a < board.permissionsWrite.length ; a++) {
+    let usr = await User.findOne({user_id: board.permissionsWrite[a]})
+    board.permissionsWrite[a] = usr.username
+}
+
+for (let a = 0; a < board.permissionsRead.length ; a++) {
+    let usr = await User.findOne({user_id: board.permissionsRead[a]})
+    board.permissionsRead[a] = usr.username
+}
 
     res.status(200).json({
         ok: true,
