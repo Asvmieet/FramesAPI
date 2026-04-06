@@ -26,7 +26,7 @@ router.patch("/:boardID", async (req, res) =>{
       content = content.toString();
 
       if (["__proto__", "constructor", "prototype"].includes(value)){
-return res.status(403).json({ok: false, error: "Cannot update card for security reasons."})
+return res.status(403).json({ok: false, error: "Cannot board card for security reasons."})
       }
 
           // check for user perms
@@ -39,9 +39,9 @@ return res.status(403).json({ok: false, error: "Cannot update card for security 
       
 
 
-const allowedFields = Object.keys(Card.schema.paths)
+const allowedFields = Object.keys(Board.schema.paths)
       .filter(field =>
-        !["_id", "__v", "card_id", "board"].includes(field)
+        !["_id", "__v", "card_id", "board", "board_id"].includes(field)
       )
 
       if (!allowedFields.includes(value)){
@@ -54,10 +54,10 @@ const allowedFields = Object.keys(Card.schema.paths)
 	
 	
 
-const edit = await Card.findOneAndUpdate({card_id: cardID}, {$set: {[value]: content}}, {new: true, runValidators: true})
+const edit = await Board.findOneAndUpdate({board_id: boardID}, {$set: {[value]: content}}, {new: true, runValidators: true})
 
 if (!edit){
-  return res.status(404).json({ok: false, error: "Card not found"})
+  return res.status(404).json({ok: false, error: "Board not found"})
 
 }
 
@@ -68,13 +68,13 @@ if (!edit){
 
     // Complete the request
   } else {
-    res.status(400).json({ok: false, error: "Failed to update card - Missing Information"})
+    res.status(400).json({ok: false, error: "Failed to update board - Missing Information"})
 
   }
 
   }catch(err){
-    console.log(`FRAMES_ERROR - Update Card: ${err}`)
-    res.status(500).json({ok: false, error: "Failed to update card, check logs for more information."})
+    console.log(`FRAMES_ERROR - Update Board: ${err}`)
+    res.status(500).json({ok: false, error: "Failed to update board, check logs for more information."})
   }
 
 })
