@@ -23,12 +23,16 @@ let arrayWrite = []
 let arrayRead = []
 for (let a = 0; a < board.permissionsWrite.length ; a++) {
     let usr = await User.findOne({user_id: board.permissionsWrite[a]})
+    if(usr){
     arrayWrite[a] = usr.username
+    }
 }
 
 for (let a = 0; a < board.permissionsRead.length ; a++) {
     let usr = await User.findOne({user_id: board.permissionsRead[a]})
+    if(usr){
     arrayRead[a] = usr.username
+    }
 }
 
     res.status(200).json({
