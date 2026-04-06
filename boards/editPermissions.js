@@ -6,6 +6,8 @@ const express = require("express");
 const router = express.Router();
 const dbConnect = require("../database.js")
 const Board = require("../schema/board.js")
+const User = require("../schema/user.js")
+
 const crypto = require("crypto")
 
 router.patch("/:boardID", async (req, res) =>{
@@ -14,18 +16,18 @@ router.patch("/:boardID", async (req, res) =>{
     const db = await dbConnect()
 	
 	let boardID = req.params.boardID
-  let {type, userID} = req.body;
+  let {type, username} = req.body;
   
 
 
 
 // Security & Validation
-    if (type && userID && boardID){
+    if (type && username && boardID){
       boardID = boardID.toString();
-      userID = userID.toString();
+      username = username.toString();
       type = type.toString();
 
-
+let UID = ""
 
           // check for user perms
 
@@ -38,20 +40,23 @@ router.patch("/:boardID", async (req, res) =>{
 
 // Edit the permissions
     
+let usr = await User.findOne({username: username})
+if(usr){
+UID = usr.user_id
 
 	if (type == "write"){
         await Board.updateOne({board_id: boardID}, {
 
-            $addToSet: {permissionsWrite: userID},
-            $pull: {permissionsRead: userID}
+            $addToSet: {permissionsWrite: UID},
+            $pull: {permissionsRead: UID}
 
         })
 
     } else if (type == "read"){
         await Board.updateOne({board_id: boardID}, {
 
-            $addToSet: {permissionsRead: userID},
-            $pull: {permissionsWrite: userID}
+            $addToSet: {permissionsRead: UID},
+            $pull: {permissionsWrite: UID}
 
         })
     }
@@ -63,7 +68,7 @@ router.patch("/:boardID", async (req, res) =>{
         ok: true,
 
     })
-
+}
     // Complete the request
   } else {
     res.status(400).json({ok: false, error: "Failed to update permissions - Missing Information"})
