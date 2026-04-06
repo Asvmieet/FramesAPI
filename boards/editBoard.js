@@ -26,7 +26,7 @@ router.patch("/:boardID", async (req, res) =>{
       content = content.toString();
 
       if (["__proto__", "constructor", "prototype"].includes(value)){
-return res.status(403).json({ok: false, error: "Cannot board card for security reasons."})
+return res.status(403).json({ok: false, error: "Cannot board board for security reasons."})
       }
 
           // check for user perms
@@ -50,7 +50,7 @@ const allowedFields = Object.keys(Board.schema.paths)
       }
 
 
-// Edit the card
+// Edit the board
 	
 	
 
