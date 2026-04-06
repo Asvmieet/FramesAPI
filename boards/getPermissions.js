@@ -6,6 +6,7 @@ const express = require("express");
 const router = express.Router();
 const dbConnect = require("../database.js")
 const Board = require("../schema/board.js")
+const User = require("../schema/user.js")
 require("dotenv").config({path: "frames.env"})
 const Card = require("../schema/card.js")
 
