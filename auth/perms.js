@@ -18,6 +18,8 @@ const userID = jwtKey.user_id;
         return BoardDoc.permissionsRead.includes(userID)||  BoardDoc.permissionsWrite.includes(userID) || BoardDoc.owner_id == userID
 
 
+    } else if (permType == "own"){
+        return BoardDoc.owner_id == userID
     } else {
         return false
     }

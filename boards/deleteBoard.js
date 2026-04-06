@@ -34,8 +34,8 @@ boardID = boardID.toString()
 const {hasBoardPermission} = require("../auth/perms.js") 
 const authSys_token = req.headers.authorization?.split(" ")[1] || req.cookies?.frames_token
 if (!authSys_token) return res.status(401).json({oK: false, error: "Please include a token in your response."})
-const authSys_editPerms = await hasBoardPermission(authSys_token,boardID,"write")
-if (!authSys_editPerms) return res.status(403).json({ok: false, error: "You need write permissions to edit this board."})
+const authSys_editPerms = await hasBoardPermission(authSys_token,boardID,"own")
+if (!authSys_editPerms) return res.status(403).json({ok: false, error: "You need to be the owner of this board."})
 
 
 // Delete the board & cards
